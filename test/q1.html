@@ -1,0 +1,48 @@
+<!-- Quantification: 1.00
+Distortion: The logarithmic y-axis compressed differences, flattening the nearly doubling growth into a steady line.
+Manipulation type: axis scale deception.
+Correction: Using a linear y-axis reveals that active users nearly doubled over time, showing accelerating growth instead of constant. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Active Users Growth</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 16px; }
+    canvas { max-height: 340px; }
+  </style>
+</head>
+<body>
+  <h3>Active Users Growth</h3>
+  <canvas id="chart"></canvas>
+  <script>
+    const ctx = document.getElementById('chart');
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["M1","M2","M3","M4","M5","M6","M7","M8","M9"],
+        datasets: [{
+          label: "Active users",
+          data: [175.97,198.22,218.03,243.13,266.93,287.59,311.22,328.11,350.58],
+          borderColor: "#059669",
+          backgroundColor: "rgba(5, 150, 105, 0.12)",
+          tension: 0.25,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: { display: true, text: "Active Users Growth" }
+        },
+        scales: {
+          y: { type: "linear", beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
