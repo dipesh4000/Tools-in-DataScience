@@ -1,0 +1,126 @@
+Ques : The chart below uses the wrong color scheme for its data type. Color is a data encoding — choosing the wrong scheme actively misleads viewers. Your job is to diagnose the problem, explain it, and fix the chart.
+
+⚠️ Broken Chart: Crop Yield by Farm
+Wheat yield (tonnes/hectare) by farm, ranging from 1.2 to 9.8 t/ha
+
+The chart below encodes data with an incorrect color scheme. Study it carefully.
+
+
+📋 Broken Chart Source Code (HTML you must fix)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Yield by Farm</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --text: #212529;
+      --subtext: #6c757d;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #212529;
+        --text: #f8f9fa;
+        --subtext: #adb5bd;
+      }
+    }
+    body { font-family: sans-serif; margin: 16px; background: var(--bg); color: var(--text); }
+    h2 { font-size: 1rem; margin-bottom: 4px; }
+    p  { font-size: 0.8rem; color: var(--subtext); margin-bottom: 12px; }
+    canvas { max-height: 280px; }
+  </style>
+</head>
+<body>
+  <h2>Crop Yield by Farm</h2>
+  <p>Wheat yield (tonnes/hectare) by farm, ranging from 1.2 to 9.8 t/ha</p>
+  <canvas id="chart"></canvas>
+  <script>
+    // WRONG: categorical palette applied to categorical data
+    const colors = ["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#e41a1c","#377eb8"];
+    new Chart(document.getElementById('chart'), {
+      type: 'bar',
+      data: {
+        labels: ["Farm A","Farm B","Farm C","Farm D","Farm E","Farm F","Farm G"],
+        datasets: [{
+          label: 'Crop Yield by Farm',
+          data: [1.2,2.5,4,5.5,6.8,8.1,9.8],
+          backgroundColor: colors,
+          borderColor: colors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  </script>
+</body>
+</html>
+Your Task (all three parts required):
+
+Explain the mismatch: What does the current color scheme incorrectly imply about the data? Be specific about what a viewer would misread.
+Name the correct scheme type (sequential, categorical, or diverging) and explain why it fits this data.
+Fix the chart: Submit corrected HTML using an appropriate palette. Your explanation must appear as an HTML comment (<!-- ... -->) or as visible text inside the submitted HTML.
+💡 Hint — what to look for: The data values have a natural numeric ordering (Wheat yield (tonnes/hectare) by farm, ranging from 1.2 to 9.8 t/ha). Ask yourself: does the current palette communicate that order, or does it treat each bar/region as an independent, unrelated group?
+
+
+
+
+answer <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Yield by Farm</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 16px; }
+    canvas { max-height: 280px; }
+  </style>
+</head>
+<body>
+
+<!--
+  MISMATCH EXPLANATION:
+  The original chart used a categorical palette on sequential numeric data.
+  A categorical palette assigns perceptually distinct unordered hues to each bar, which
+  implies farms with different yields belong to distinct unrelated groups instead of expressing a yield gradient.
+  The correct scheme type is sequential: wheat yield has a natural low-to-high order
+  (1.2 to 9.8 t/ha), so a single-hue ramp (light to dark blue) correctly encodes that ordering.
+  Lightness values are strictly monotonically decreasing from lightest (lowest yield) to darkest (highest yield).
+-->
+
+  <h2>Crop Yield by Farm</h2>
+  <p>Wheat yield (tonnes/hectare) by farm. Uses a <strong>sequential</strong> color scheme (light to dark blue).
+  The original categorical palette implied farms with different yields belong to distinct unrelated groups instead of expressing a yield gradient.</p>
+  <canvas id="chart"></canvas>
+  <script>
+    // sequential palette: ColorBrewer Blues 7-step, strictly light to dark
+    // L* values: 98.4, 92.4, 86.5, 79.0, 68.2, 57.8, 46.3 (monotonically decreasing)
+    const colors = ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5"];
+
+    new Chart(document.getElementById("chart"), {
+      type: "bar",
+      data: {
+        labels: ["Farm A","Farm B","Farm C","Farm D","Farm E","Farm F","Farm G"],
+        datasets: [{
+          label: "Crop Yield by Farm",
+          data: [1.2, 2.5, 4, 5.5, 6.8, 8.1, 9.8],
+          backgroundColor: colors,
+          borderColor: colors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  </script>
+</body>
+</html>
