@@ -9,3 +9,8 @@ dependencies = [
     "prometheus-client>=0.25.0",
     "uvicorn>=0.50.2",
 ]
+
+[tool.uv.workspace]
+members = [
+    "week2/tunnel-demo",
+]
