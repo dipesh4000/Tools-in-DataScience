@@ -1,0 +1,22 @@
+ID,Fragment,WC,4o,4.1,4.1m,5m
+I1,Step-by-step.,16,0.40,1.08,1.18,-0.33
+I2,Act as Expert.,6,0.59,1.09,0.42,0.66
+I3,JSON Output.,13,0.31,-0.09,0.21,0.71
+I4,No yapping.,13,-0.34,0.63,1.37,-0.05
+I5,Few-shot (3).,5,0.02,0.27,1.25,-0.19
+I6,Chain of Thought.,15,0.19,-0.36,0.73,0.34
+I7,Explain reasoning.,17,0.32,0.26,0.79,-0.39
+I8,Professional tone.,6,0.94,1.25,1.30,-0.21
+I9,Strict format.,5,0.80,0.52,0.97,0.16
+I10,Avoid jargon.,9,1.38,0.87,0.56,-0.09
+I11,Summary first.,11,0.01,-0.13,0.17,0.14
+I12,Double check.,14,-0.34,0.75,0.87,0.85
+I13,Self-reflect.,16,1.15,1.07,0.41,0.05
+I14,Contextualize.,13,1.33,0.26,0.14,1.30
+I15,Verify logic.,16,0.63,1.08,0.59,1.40
+I16,Brevity.,11,-0.07,1.36,-0.25,0.72
+I17,Analogies.,15,0.02,0.71,1.50,-0.02
+I18,Citations.,6,0.17,1.14,0.67,-0.27
+I19,"Persona: Mentor.",17,1.06,0.41,0.55,0.83
+I20,"Persona: Auditor.",15,0.73,-0.25,1.16,0.91
+I21,JSON schema.,8,0.29,-0.36,0.97,-0.27
