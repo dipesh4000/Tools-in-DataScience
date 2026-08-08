@@ -7,7 +7,6 @@ Entry point of the project.
 from __future__ import annotations
 
 import numpy as np
-
 from preprocess import load_data
 from bitmask import find_best_prompt
 
@@ -37,8 +36,8 @@ def main():
     print("Loading datasets...")
 
     data = load_data(
-        fragment_csv="fragments.csv",
-        pair_csv="pair_bonus.csv",
+        fragment_csv="C:\\Users\\dipes\\Documents\\IITM\\TDS\\Week6\\Prompt_Auditing\\fragments.csv",
+        pair_csv="C:\\Users\\dipes\\Documents\\IITM\\TDS\\Week6\\Prompt_Auditing\\pair_bonus.csv",
     )
 
     print(f"{data['N']} prompt fragments loaded.")
